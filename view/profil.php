@@ -79,7 +79,7 @@
 				<section class="h-v-center">
 					<article class="content">
 						<div class="ctn-profil-pic">
-							<div class="profil-pic" style="background-image:url(../assets/datas/profil-pic/<?php echo($user["url_pic"]); ?>)"/></div>
+							<div id="parameter_pic" class="profil-pic" style="background-image:url(../assets/datas/profil-pic/<?php echo($user["url_pic"]); ?>)"/></div>
 							<div class="hover-profil-pic">
 								<img class="hover-profil-photo" src="../assets/datas/img/profil-photo.png">
 							</div>
