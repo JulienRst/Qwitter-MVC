@@ -159,7 +159,7 @@ $(document).ready(function(){
 				$("#parameter_pic").css("background-image", "url("+this.result+")");
 			}
 		}
-	});
+	}); 	
 
 	$('#reqwitt').click(function(){
 		var message = $('#reqwitt-text').val();
@@ -225,24 +225,26 @@ function send_post(u_message){
 			message : u_message
 		},
 		function(resp){
-			$.post("launch_message.php",{
-				object : resp
-			},function(data,status){
-				if(status == "success"){
-					$('#qwitt-launcher').html($(data));
-					$('#qwitt-launcher').css('height','auto');
-					var new_height = $('#qwitt-launcher').height();
-					$('#qwitt-launcher').css('height','0');
-					$('#qwitt-launcher').animate({
-						height:new_height
-					},500,function(){
-						$('#qwitt-launcher').html('');
+			if(resp["success"] == true){
+				$.post("launch_message.php",{
+					object : resp
+				},function(data,status){
+					if(status == "success"){
+						$('#qwitt-launcher').html($(data));
+						$('#qwitt-launcher').css('height','auto');
+						var new_height = $('#qwitt-launcher').height();
 						$('#qwitt-launcher').css('height','0');
-						$(data).insertAfter($('#qwitt-launcher'));
-					});
-					$('#qwitt-count').html(resp["nbQwitt"]+' Qwitts');
-				}
-			});
+						$('#qwitt-launcher').animate({
+							height:new_height
+						},500,function(){
+							$('#qwitt-launcher').html('');
+							$('#qwitt-launcher').css('height','0');
+							$(data).insertAfter($('#qwitt-launcher'));
+						});
+						$('#qwitt-count').html(resp["nbQwitt"]+' Qwitts');
+					}
+				});
+			}
 		}
 	);
 }

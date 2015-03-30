@@ -80,6 +80,11 @@
 
 		public function insertNewUser($name,$surname,$pseudo,$birthday,$mail,$password,$key){
 			$password = cryptmdp($password); //On crypte le mot de passe
+			//On enlève les caractères sépciaux !
+			$name = htmlspecialchars($name);
+			$surname = htmlspecialchars($surname);
+			$pseudo = htmlspecialchars($pseudo);
+			$mail = htmlspecialchars($mail);
 			//On prépare la requette d'insertion d'un utilisateur.
 			$stmt = $this->pdo->prepare("INSERT INTO user(name,surname,pseudo,birthday,mail,password,verifKey) VALUES(:name,:surname,:pseudo,:birthday,:mail,:password,:key)");
 			//On remplace tous les :item par la bonne valeur.
@@ -387,6 +392,9 @@
 		--- */
 
 		public function addMessage($idUser,$date,$message){
+
+			$message = htmlspecialchars($message);
+
 			$stmt = $this->pdo->prepare("INSERT INTO qwitt (idUser,date,message) VALUES (:idUser,:date,:message)");
 			$stmt->bindParam(':idUser',$idUser);
 			$stmt->bindParam(':date',$date);

@@ -4,17 +4,15 @@
 	$db = new database();
 	session_start();
 	$idUser = $_SESSION["idUserConnected"];
-
-	print_r($_FILES);
-
+ 	
 	if(isset($_FILES['url_pic']) && $_FILES['url_pic']["error"] == 0){ 
-	    $dossier = '../datas/profil-pic/';
+	    $dossier = '../assets/datas/profil-pic/';
 	    $fichier = basename($_FILES['url_pic']['name']);
 		$fichier = strtr($fichier,'ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõöùúûüýÿ','AAAAAACEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyy'); 
 		$fichier = preg_replace('/([^.a-z0-9]+)/i', '-', $fichier);
 		$extensions = array('.png', '.gif', '.jpg', '.jpeg');
 		$extension = strrchr($_FILES['url_pic']['name'], '.');
-		if(!in_array($extension, $extensions)){
+		if(!in_array(strtolower($extension), $extensions)){
 			exit();
 		} else {
 			$fichier = uniqid().'.'.$extension;
@@ -36,6 +34,6 @@
 	
 	//gestion de l'erreur à faire
 
-	header('location:../profil.php');
+	header('location:../controller/viewProfil.php');
 	exit();
 ?>
