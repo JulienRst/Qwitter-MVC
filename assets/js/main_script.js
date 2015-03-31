@@ -124,7 +124,7 @@ $(document).ready(function(){
 	})
 
 	$('#setDeco').click(function(){
-		window.location = 'php/disconnect.php';
+		window.location = 'disconnect.php';
 	});
 
 	$('.icon-fav').click(function(){

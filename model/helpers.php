@@ -32,7 +32,7 @@
 		$to      = $mail;
 		$subject = 'Validez votre inscription sur Qwitter !';
 		$message = 'Bonjour à toi Qwitterien afin de vérifier les informations que tu nous as donné il te suffit de cliquer sur le lien dans le mail !';
-		$message.= 'Voici le lien : http://www.julien-rousset.fr/qwitter/php/user_verify.php?key='.$key.'&mail='.$mail;
+		$message.= 'Voici le lien : http://www.julien-rousset.fr/qwitter/controller/user_verify.php?key='.$key.'&mail='.$mail;
 		$headers = 'MIME-Version: 1.0';
    		mail($to, $subject, $message, $headers);
 	}

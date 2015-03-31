@@ -12,14 +12,14 @@
 
 	if($db->isThisMailInDb($u_mail)){
 		 $_SESSION["error"] = "Ce mail est déjà utilisé !";
-		 header('location:../registration.php');
+		 header('location:viewRegistration.php');
 		 exit();
 	} else {
 		$key = uniqid();
 		echo($key.'<br>');
 		$db->insertNewUser($u_name,$u_surname,$u_pseudo,$u_birthday,$u_mail,$u_mdp,$key);
 		sendConfirmMail($u_mail,$key);
-		header('location:../connection.php');
+		header('location:viewConnection.php');
 		exit();
 	}
 ?>

@@ -14,5 +14,5 @@
 	} else {
 		$_SESSION["error"] = $result["error"];
 	}
-	header('location:../connection.php');
+	header('location:../controller/connection.php');
 ?>

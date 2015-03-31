@@ -11,7 +11,7 @@
 
 	sendConfirmMail($user['mail'],$user['verifKey']);
 
-	header('location:../connection.php');
+	header('location:viewConnection.php');
 	exit();
 
 ?>

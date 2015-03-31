@@ -131,7 +131,7 @@
 						return array("connected" => false,"error" => "Mot de passe incorrect !");
 					}
 				} else {
-					return array("connected" => false,"error" => "Ce compte n'est pas vérifié ! Regardez vos mails ou redemandez une vérification en <a href='php/sendVerifMail.php?id=".$user['id']."'>cliquant ici.");
+					return array("connected" => false,"error" => "Ce compte n'est pas vérifié ! Regardez vos mails ou redemandez une vérification en <a href='sendVerifMail.php?id=".$user['id']."'>cliquant ici.");
 				}
 			} else {
 				return array("connected" => false,"error" => "Adresse introuvable !");
