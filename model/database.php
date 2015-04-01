@@ -292,7 +292,7 @@
 		--- */
 
 		public function getMessageFromUser($id){
-			$stmt = $this->pdo->prepare("SELECT * FROM qwitt WHERE idUser = :id ORDER BY date DESC");
+			$stmt = $this->pdo->prepare("SELECT * FROM qwitt WHERE idWall = :id ORDER BY date DESC");
 			$stmt->bindParam(':id',$id);
 			try {
 				$stmt->execute();
@@ -333,6 +333,23 @@
 			for($i=0;$i<$stmt->rowcount();$i++){
 				$tab_message[$i] = new qwitt($tab_message[$i],$this->pdo,'reqwitt');
 			}
+			return $tab_message;
+		}
+
+		public function getNewsFeed($id){
+			$stmt = $this->pdo->prepare("SELECT DISTINCT q.* FROM qwitt as q , follow as f WHERE q.idWall = :idUser or q.idWall IN (SELECT f.idAbo FROM follow as f WHERE f.idUser = :idUser) ORDER BY q.date DESC");
+			$stmt->bindParam(':idUser',$id);
+			try {
+				$stmt->execute();
+			} catch (Exception $e){
+				return ("Error line :".$e->getLine()." : ".$e->getMessage());
+			}
+			$tab_message = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+			for($i=0;$i<$stmt->rowcount();$i++){
+				$tab_message[$i] = new qwitt($tab_message[$i],$this->pdo);
+			}
+
 			return $tab_message;
 		}
 
@@ -391,14 +408,15 @@
 
 		--- */
 
-		public function addMessage($idUser,$date,$message){
+		public function addMessage($idUser,$idWall,$date,$message){
 
 			$message = htmlspecialchars($message);
 
-			$stmt = $this->pdo->prepare("INSERT INTO qwitt (idUser,date,message) VALUES (:idUser,:date,:message)");
+			$stmt = $this->pdo->prepare("INSERT INTO qwitt (idUser,idWall,date,message) VALUES (:idUser,:idWall,:date,:message)");
 			$stmt->bindParam(':idUser',$idUser);
 			$stmt->bindParam(':date',$date);
 			$stmt->bindParam(':message',$message);
+			$stmt->bindParam(':idWall',$idWall);
 			try {
 				$stmt->execute();
 			} catch (Exception $e) {

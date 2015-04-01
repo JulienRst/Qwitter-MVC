@@ -217,6 +217,20 @@ nav div.nav-ctn-pic{
 	margin-left: 5px;
 }
 
+nav div.nav-a {
+	margin-left: 10px;
+	display: inline-block;
+}
+
+nav div.nav-a a{
+	color :white;
+	transition:0.2s;
+}
+
+nav div.nav-a:hover a {
+	color : black;
+}
+
 nav #nav-pic {
 	display: inline-block;
 	background-color: black;
@@ -261,7 +275,7 @@ input#user-finder {
 	border:none;
 	padding: 0;
 	margin: 0;
-	margin-left: 645px;
+	margin-left: 535px;
 
 	/* - bg - */
 	background-image: url(../datas/img/lense.png);
@@ -491,6 +505,10 @@ section#ctn-qwitts{
 	padding: 1rem;
 }
 
+section#ctn-qwitts.newsfeed {
+	padding-top: 35px;
+}
+
 section#ctn-qwitts p {
 	font-family: "roboto-medium";
 }
@@ -598,6 +616,24 @@ div.qwitt{
 
 .q-header-view-name{
 	font-size:1rem;
+}
+
+.q-header-view-name a {
+	display: inline-block;
+	color: black;
+	transition:0.2s;
+}
+
+.q-header-view-name a:hover {
+	color : rgb(233,86,58);
+}
+
+.q-header-view-name a.first {
+	margin-right : 5px;
+}
+
+.q-header-view-name a.last {
+	margin-left : 5px;
 }
 
 .q-header-view-date{

@@ -9,26 +9,7 @@
 	</head>
 	<body>
 		<div id="wrap">
-			<nav>
-				<div class="nav-ctn-pic">
-					<div rel="<?php echo($user["id"]); ?>" style="background-image:url(../assets/datas/profil-pic/<?php echo($user["url_pic"]);?>)" id="nav-pic"></div>
-				</div>
-				<input id="user-finder" value=""/>
-				<div id="list-user-finder"></div>
-				<div id="ctn-gear" class="nav-ctn-pic">
-					<img id="gear" src="../assets/datas/img/gear.png">
-					<div id="parameters">
-						<div id="setParam" class="param">
-							<img src="../assets/datas/img/gear.png">
-							<p>Paramètres</p>
-						</div>
-						<div id="setDeco" class="param">
-							<img src="../assets/datas/img/off.png">
-							<p>Déconnexion<p>
-						</div>
-					</div>
-				</div>
-			</nav>
+			<?php include('../view/nav.php'); ?>
 			<header>
 				<div id="ctn-profil-pic">
 					<div class="profil-pic" style="background-image:url(../assets/datas/profil-pic/<?php echo($profil["url_pic"]);?>);"></div>
@@ -57,16 +38,11 @@
 			<!--||| /////////////// SECTION \\\\\\\\\\\\\\\ ||| -->
 
 			<section id="ctn-qwitts">
-				<?php if($idUser == $idProfil){
-						echo('
-							<div id="post-qwitt">
-								<textarea placeholder="Exprimez vous !"></textarea>
-								<p>Envoyer >></p>
-							</div>
-							<div id="qwitt-launcher"></div>
-						');
-					}
-				?>
+				<div id="post-qwitt">
+					<textarea placeholder="Exprimez vous !"></textarea>
+					<p>Envoyer >></p>
+				</div>
+				<div id="qwitt-launcher"></div>
 				<?php
 					foreach($tab_message as $qwitt){
 						$qwitt->printQwitt();

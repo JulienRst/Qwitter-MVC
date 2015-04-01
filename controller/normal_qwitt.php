@@ -1,9 +1,4 @@
 <?php
-	
-	if(!isset($nbFav)){$nbFav = 0;}
-	if(!isset($nbReq)){$nbReq = 0;}
-	if(!isset($id)){$id=NULL;}
-
 	echo('
 	<div class="qwitt normal">
 		<div class="qwitt-header">
@@ -11,7 +6,7 @@
 				<div style="background-image:url(../assets/datas/profil-pic/'.$user_pic.');"></div>
 			</div>
 			<div class="q-header-view">
-				<p class="q-header-view-name">'.$user_name.'</p>
+				<p class="q-header-view-name"><a class="first" href="viewProfil.php?idUserToSee='.$id_posteur.'">'.$user_name.'</a>'.$wall_name.'</p>
 				<p class="q-header-view-date">'.$date.'</p>
 
 			</div>

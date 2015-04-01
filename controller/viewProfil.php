@@ -31,6 +31,7 @@
 			$displayAbo = '';
 		}
 		
+		$_SESSION["idWall"] = $idProfil;
 
 		//On récupère les qwitts, les favoris et les reqwitts
 		$tab_message = $db->getMessageFromUser($idProfil);

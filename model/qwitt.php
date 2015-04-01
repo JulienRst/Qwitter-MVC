@@ -17,9 +17,12 @@
 		private $nbReQwitt; //Nombre de reqwitt sur le message
 		private $nbFav; //Nombre de fav sur le message
 		private $user; //tableau d'information sur l'utilisateur
+		private $idWall; //Id du profil sur lequel le qwitt est posté
+		private $userWall; //User sur lequel le qwitt est posté
 		protected $pdo; //Objet pdo que l'on récupère à la création 
 		private $type; //Type de qwitt : normal | reqwitt | favoris
 		private $reqwitt_message; //Message dans le reqwitt 
+		private $wall_name;
 
 		/* ---
 		
@@ -35,11 +38,20 @@
 			$this->idUser = $qwitt["idUser"];
 			$this->date = timestampToDate($qwitt["date"]);
 			$this->pdo = $pdo;
+			$this->idWall = $qwitt["idWall"];
 			$this->type = $type;
 
 			if($type == 'normal'){
 				$this->nbReQwitt = $this->getCaracOfMessage($this->idMsg,"reqwitt");
 				$this->nbFav = $this->getCaracOfMessage($this->idMsg,"favoris");
+
+				if($this->idWall != $this->idUser){
+					$this->userWall = $this->getCurrentUser($this->idWall);
+					$this->wall_name = ">> <a class='last' href='viewProfil.php?idUserToSee='".$this->idWall."'>".$this->userWall['surname'].' '.$this->userWall['name'].'</a>';
+				} else {
+					$this->wall_name = "";
+				}
+
 				$this->message = $qwitt["message"];
 			} else if($type == 'favoris'){
 				$idMessageFav = $qwitt['idMessage'];
@@ -64,6 +76,9 @@
 		public function getType(){return $this->type;}
 		public function getUser(){return $this->user;}
 		public function getReqwittMessage(){return $this->reqwitt_message;}
+		public function getUserWall(){return $this->userWall;}
+		public function getIdWall(){return $this->idWall;}
+		public function getWallName(){return $this->wall_name;}
 
 		/* ---
 		
@@ -88,9 +103,11 @@
 		public function printQwitt(){
 			if($this->getType() == 'normal'){
 				//Info du posteur du Qwitt
-				$user = $this->getCurrentUser($this->getIdUser());
+				$id_posteur = $this->getIdUser();
+				$user = $this->getCurrentUser($id_posteur);
 				$user_pic = $user["url_pic"];
 				$user_name = $user["surname"].' '.$user["name"];
+				$wall_name = $this->getWallName();
 				//Info du Qwitt en lui même
 				$date = $this->getDate();
 				$message = $this->getMessage();
