@@ -38,10 +38,10 @@
 			$this->idUser = $qwitt["idUser"];
 			$this->date = timestampToDate($qwitt["date"]);
 			$this->pdo = $pdo;
-			$this->idWall = $qwitt["idWall"];
 			$this->type = $type;
 
 			if($type == 'normal'){
+				$this->idWall = $qwitt["idWall"];
 				$this->nbReQwitt = $this->getCaracOfMessage($this->idMsg,"reqwitt");
 				$this->nbFav = $this->getCaracOfMessage($this->idMsg,"favoris");
 
